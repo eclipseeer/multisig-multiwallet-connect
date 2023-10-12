@@ -6,12 +6,18 @@ export const walletsConnector = {
     route: '/wallets',
     routeParams: null,
 
+    // isOpen: true,
+    // route: '/ledger/multisig-accounts/progress',
+
     open: action((state) => {
       state.isOpen = true;
     }),
+
     close: action((state) => {
+      if (state.route === '/ledger/connect/progress') return;
       state.isOpen = false;
     }),
+
     navigate: action((state, payload) => {
       if (typeof payload === 'string') {
         state.route = payload;

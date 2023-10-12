@@ -4,7 +4,7 @@ import { SpecifyPath } from './Ledger/SpecifyPath/SpecifyPath.jsx';
 import { ConnectionProgress } from './Ledger/ConnectionProgress/ConnectionProgress.jsx';
 import { ConnectError } from './Ledger/ConnectError/ConnectError.jsx';
 import { FindMultisigAccountsProgress } from './Ledger/FindMultisigAccountsProgress/FindMultisigAccountsProgress.jsx';
-import { FindMultisigAccountsError } from './Ledger/FindMultisigAccountsError/FindMultisigAccountsError.jsx';
+import { NoMultisigAccounts } from './Ledger/NoMultisigAccounts/NoMultisigAccounts.jsx';
 import { ImportedAccounts } from './Ledger/ImportedAccounts/ImportedAccounts.jsx';
 import cn from './WalletModal.module.css';
 import { useStoreState, useStoreActions } from 'easy-peasy';
@@ -24,7 +24,7 @@ export const WalletModal = () => {
   if (!isOpen) return null;
 
   return (
-    <div className={cn.container} onClick={close}>
+    <div className={cn.container}>
       <div className={cn.modal} onClick={(e) => e.stopPropagation()}>
         {route === '/wallets' && <Wallets />}
         {route === '/ledger/connect' && <Connect />}
@@ -36,7 +36,7 @@ export const WalletModal = () => {
           <ImportedAccounts routeParams={routeParams} closeModal={close} />
         )}
         {route === '/ledger/multisig-accounts/error' && (
-          <FindMultisigAccountsError routeParams={routeParams} />
+          <NoMultisigAccounts routeParams={routeParams} />
         )}
       </div>
     </div>
